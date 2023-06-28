@@ -27,7 +27,7 @@ DEPTH2 <- function (input_data) {
 
 	# DEPTH2 ------------------------------------------------------------
 	input_data_adjust <- t(abs(scale(t(input_data))))
-	input_data_adjust[which(input_data_adjust == "NaN")] = 0 
+	input_data_adjust[is.nan(input_data_adjust)] <- 0
 	DEPTH20 <- apply(input_data_adjust, 2, sd)
 	DEPTH2 <- data.frame(Sample = names(DEPTH20), DEPTH2_score = DEPTH20, row.names = NULL)
 	return(DEPTH2)
